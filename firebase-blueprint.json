@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A premium rice variety catalog product listing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "discount": { "type": "number" },
+        "image": { "type": "string" },
+        "rating": { "type": "number" },
+        "stock": { "type": "number" },
+        "description": { "type": "string" },
+        "cookingTime": { "type": "string" },
+        "moisture": { "type": "string" },
+        "grainLength": { "type": "string" },
+        "isOrganic": { "type": "boolean" },
+        "isPremium": { "type": "boolean" },
+        "bagSizes": { "type": "array" },
+        "reviews": { "type": "array" }
+      },
+      "required": ["id", "name", "category", "price", "discount", "stock", "description"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "An invoice purchase order containing rice bags",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "shippingAddress": { "type": "string" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "couponApplied": { "type": "string" },
+        "deliveryCharge": { "type": "number" },
+        "total": { "type": "number" },
+        "status": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "paymentStatus": { "type": "string" },
+        "upiTransactionId": { "type": "string" },
+        "upiScreenshot": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "customerName", "customerEmail", "customerPhone", "shippingAddress", "items", "total", "status", "paymentMethod", "paymentStatus", "createdAt"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "A promotional coupon code for discounts",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "discountPercentage": { "type": "number" },
+        "description": { "type": "string" },
+        "minPurchase": { "type": "number" },
+        "maxDiscount": { "type": "number" }
+      },
+      "required": ["code", "discountPercentage", "minPurchase"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Rice product listings curated by the mill admin"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer purchase orders and proof receipts"
+    },
+    "/coupons/{couponId}": {
+      "schema": "Coupon",
+      "description": "Discount codes allowlisted for checkouts"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Jagan Mohan Rice Mill",
+  "description": "Premium production-ready e-commerce platform for Jagan Mohan Rice Mill. Fresh, farm-to-table rice delivered directly from Guntur, Andhra Pradesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
