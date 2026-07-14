@@ -25,7 +25,7 @@ export default function AboutPage() {
             <div>
               <strong className="text-base text-[#1A1A1A] font-serif font-bold block mb-1">Our Humble Beginnings</strong>
               <p className="text-xs text-gray-400 leading-relaxed">
-                Jagan Mohan Rice Mill was established in 1984 under family visionaries. What started as a single local huller has scaled into Guntur's premier automated milling powerhouse, processing thousands of metric tons per year with strict quality control.
+                Jagan Mohan Rice Mill was established in 1984 under the visionary leadership of Sri Karamsetti Sambha Siva Rao. What began as a single local rice huller has grown into one of Guntur's premier automated rice milling enterprises, processing thousands of metric tons of premium-quality rice every year. Built on decades of trust, innovation, and uncompromising quality standards, the mill combines traditional values with modern milling technology to deliver fresh, nutritious, and consistently high-quality rice to families, retailers, wholesalers, and institutions across Andhra Pradesh and beyond.
               </p>
             </div>
           </div>
