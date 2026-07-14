@@ -300,7 +300,7 @@ export const PRODUCTS: Product[] = [
     stock: 500,
     category: 'Basmati Rice',
     image: '/Daawat rice.png?v=4',
-    bagSizes: [1, 2, 5, 10, 26],
+    bagSizes: [1, 2, 5, 10, 30],
     nutrition: {
       calories: '365 kcal',
       protein: '8.2g',
@@ -320,7 +320,7 @@ export const PRODUCTS: Product[] = [
     stock: 450,
     category: 'Basmati Rice',
     image: '/Indiagate Rice.webp?v=4',
-    bagSizes: [1, 2, 5, 10, 26],
+    bagSizes: [1, 2, 5, 10, 30],
     nutrition: {
       calories: '368 kcal',
       protein: '8.5g',
@@ -345,7 +345,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/kodomillet.png',
-    bagSizes: [0.5, 1, 2],
+    bagSizes: [ 1, 2, 5 ],
     nutrition: {
       calories: '333 kcal',
       protein: '8.3g',
@@ -366,7 +366,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/foxtailmillet.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '351 kcal',
       protein: '11.2g',
@@ -387,7 +387,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/browntopmillet.png',
-    bagSizes: [0.5, 1, 2],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '338 kcal',
       protein: '8.9g',
@@ -408,7 +408,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/littlemillet.png',
-    bagSizes: [0.5, 1, 2],
+    bagSizes: [ 1, 2, 5 ],
     nutrition: {
       calories: '341 kcal',
       protein: '7.7g',
@@ -429,7 +429,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/barnyardmillet.png',
-    bagSizes: [0.5, 1, 2],
+    bagSizes: [ 1, 2, 5 ],
     nutrition: {
       calories: '307 kcal',
       protein: '6.2g',
@@ -450,7 +450,7 @@ export const PRODUCTS: Product[] = [
     category: 'Millets',
     isAddOn: true,
     image: '/quinoa.png',
-    bagSizes: [0.5, 1, 2],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '368 kcal',
       protein: '14.1g',
@@ -475,7 +475,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/blackrice.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5 ],
     nutrition: {
       calories: '340 kcal',
       protein: '8.5g',
@@ -498,7 +498,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/redrice.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],   
     nutrition: {
       calories: '343 kcal',
       protein: '7.6g',
@@ -519,7 +519,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/chittimuthyalurice.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '357 kcal',
       protein: '7.2g',
@@ -542,7 +542,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/idlyrava.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '345 kcal',
       protein: '6.4g',
@@ -563,7 +563,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/ricerava.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '346 kcal',
       protein: '6.5g',
@@ -584,7 +584,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/boiledrice.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '349 kcal',
       protein: '6.9g',
@@ -605,7 +605,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/ricebran.png',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '310 kcal',
       protein: '13.3g',
@@ -626,7 +626,7 @@ export const PRODUCTS: Product[] = [
     category: 'Specialty Rice & Rice Products',
     isAddOn: true,
     image: '/brokenrice.jpeg',
-    bagSizes: [0.5, 1, 2, 5],
+    bagSizes: [ 1, 2, 5],
     nutrition: {
       calories: '348 kcal',
       protein: '6.2g',
@@ -635,8 +635,30 @@ export const PRODUCTS: Product[] = [
       fiber: '1.0g'
     },
     reviews: []
+  },
+  {
+    id: "millets-combo",
+    name: "Millets Combo Pack",
+    description:
+      "Contains 1kg each of Kodo, Foxtail, Brown Top, Little and Barnyard Millets. Quinoa is not included.",
+    rating: 5,
+    price: 432, // Replace with your actual combo price
+    discount: 10,
+    stock: 100,
+    category: "Millets",
+    image: "/milletscombo.png",
+    bagSizes: [1],
+    nutrition: {
+      calories: "-",
+      protein: "-",
+      carbs: "-",
+      fat: "-",
+      fiber: "-"
+    },
+    reviews: []
   }
 ];
+  
 
 export const COUPONS: Coupon[] = [
   { code: 'JAGANMOHAN10', type: 'percentage', value: 10, minOrderValue: 1000 },

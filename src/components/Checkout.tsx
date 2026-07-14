@@ -73,8 +73,20 @@ export default function Checkout({
       couponDiscountValue = appliedCoupon.value;
     }
   }
+  const bagCharge = cartItems.reduce((total, item) => {
+  const isRice = item.product.category !== "Millets";
 
-  const grandTotal = Math.max(0, subtotal - couponDiscountValue + deliveryCharge);
+  if (
+    isRice &&
+    (item.selectedSize === 5 || item.selectedSize === 10)
+  ) {
+    return total + (5 * item.quantity);
+  }
+
+  return total;
+}, 0);
+
+  const grandTotal = Math.max(0, subtotal - couponDiscountValue + deliveryCharge + bagCharge);
 
   const validateForm = () => {
     const tempErrors: { [key: string]: string } = {};
