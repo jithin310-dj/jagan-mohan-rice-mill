@@ -60,9 +60,25 @@ export default function Cart({
       couponDiscountValue = appliedCoupon.value;
     }
   }
+  const riceCategories = [
+    "Jagan Mohan Rice",
+    "Health & Diet Rice",
+    "BPT & BPT Silk Rice",
+    "Basmati Rice",
+    "Specialty Rice & Rice Products",
+  ];
 
-  const grandTotal = Math.max(0, subtotal - couponDiscountValue + deliveryCharge);
+  const bagCharge = cartItems.reduce((total, item) => {
+    const isRice = riceCategories.includes(item.product.category);
 
+    if (isRice && (Number(item.selectedSize) === 5 || Number(item.selectedSize) === 10)) {
+      return total + (5 * item.quantity);
+    }
+
+    return total;
+  }, 0);
+
+  const grandTotal = Math.max(0,subtotal - couponDiscountValue + deliveryCharge + bagCharge);
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
     setCouponError('');
@@ -347,7 +363,15 @@ export default function Cart({
                   {deliveryCharge === 0 ? 'FREE' : `₹${deliveryCharge}`}
                 </span>
               </div>
-            </div>
+              {bagCharge > 0 && (
+                <div className="flex justify-between">
+                  <span>Bag Charge</span>
+                  <span className="font-bold text-gray-900">
+                    ₹{bagCharge}
+                  </span>
+                </div>
+              )}
+              </div>
 
             {/* Grand Total */}
             <div className="flex justify-between items-baseline">

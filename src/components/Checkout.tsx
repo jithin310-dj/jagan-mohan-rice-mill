@@ -74,17 +74,19 @@ export default function Checkout({
     }
   }
   const bagCharge = cartItems.reduce((total, item) => {
-  const isRice = item.product.category !== "Millets";
+    console.log(item.product.name, item.selectedSize, item.product.category);
 
-  if (
-    isRice &&
-    (item.selectedSize === 5 || item.selectedSize === 10)
-  ) {
-    return total + (5 * item.quantity);
-  }
+    const isRice = item.product.category !== "Millets";
 
-  return total;
-}, 0);
+    if (
+      isRice &&
+      (item.selectedSize === 5 || item.selectedSize === 10)
+    ) {
+      return total + (5 * item.quantity);
+    }
+
+    return total;
+  }, 0);
 
   const grandTotal = Math.max(0, subtotal - couponDiscountValue + deliveryCharge + bagCharge);
 
@@ -522,27 +524,37 @@ export default function Checkout({
               );
             })}
           </div>
-
           <div className="border-t border-gray-100 pt-4 space-y-2 text-xs text-gray-650">
             <div className="flex justify-between">
               <span>Items Total weight</span>
               <strong className="text-gray-850">{totalWeight.toFixed(1)} kg</strong>
             </div>
+
             <div className="flex justify-between">
               <span>Raw Subtotal</span>
               <strong className="text-gray-850">₹{subtotal}</strong>
             </div>
+
             {appliedCoupon && (
               <div className="flex justify-between text-emerald-700 font-bold">
                 <span>Coupon Applied ({appliedCoupon.code})</span>
                 <span>- ₹{couponDiscountValue}</span>
               </div>
             )}
+
             <div className="flex justify-between">
               <span>Double-Aged Dispatch Fee</span>
-              <strong className="text-gray-850">{deliveryCharge === 0 ? 'FREE' : `₹${deliveryCharge}`}</strong>
+              <strong className="text-gray-850">
+                {deliveryCharge === 0 ? 'FREE' : `₹${deliveryCharge}`}
+              </strong>
             </div>
-          </div>
+            {bagCharge > 0 && (
+              <div className="flex justify-between">
+                <span>Bag Charge</span>
+                <strong className="text-gray-850">₹{bagCharge}</strong>
+              </div>
+            )}
+            </div>
 
           {/* Grand Total */}
           <div className="border-t border-gray-100 pt-4 flex justify-between items-baseline">
