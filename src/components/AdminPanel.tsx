@@ -6,6 +6,8 @@ import {
   MessageSquare, LineChart, Settings2, Eye, ExternalLink, Calendar,
   Activity, CheckCircle, Smartphone, Printer, Download
 } from 'lucide-react';
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebase";
 import { Product, Order, Review, Coupon } from '../types';
 import { CATEGORIES } from '../data';
 import { printOrderInvoice, downloadOrderPDF } from '../utils';
@@ -265,6 +267,34 @@ export default function AdminPanel({
       });
     }
   };
+  const handleDeleteOrder = async (orderId: string) => {
+    if (!window.confirm("Delete this order permanently?")) return;
+
+    try {
+      // Delete from Firestore
+      await deleteDoc(doc(db, "orders", orderId));
+
+      // 👇 PASTE THIS HERE
+      const saved = localStorage.getItem("jm_orders_fallback");
+
+      if (saved) {
+        const orders: Order[] = JSON.parse(saved);
+
+        const updated = orders.filter(o => o.id !== orderId);
+
+        localStorage.setItem(
+          "jm_orders_fallback",
+          JSON.stringify(updated)
+        );
+      }
+
+      alert("Order deleted successfully.");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete order.");
+    }
+  };
+    
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 text-slate-800">
@@ -567,6 +597,16 @@ export default function AdminPanel({
                           <Printer className="w-3.5 h-3.5" />
                           Print Invoice
                         </button>
+                        {o.status === "Delivered" && o.paymentStatus === "Paid" && (
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteOrder(o.id)}
+                            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-full font-bold text-[10px] uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-xs hover:shadow-md cursor-pointer"
+                            title="Delete this order permanently"
+                          >
+                            🗑 Delete Order
+                          </button>
+                        )}
 
                         <span className="text-[10px] uppercase font-bold text-gray-400 shrink-0">Status:</span>
                         <select

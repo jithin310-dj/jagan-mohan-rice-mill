@@ -241,6 +241,7 @@ export default function App() {
         setFirestoreQuotaExceeded(true);
       }
     };
+    // Products listener
     const unsubscribeProducts = onSnapshot(
       collection(db, "products"),
       async (snapshot) => {
@@ -284,12 +285,46 @@ export default function App() {
           }
         });
 
-        // KEEP YOUR REMAINING EXISTING CODE HERE
-        // const mergedList = ...
-        // setProducts(mergedList)
-        // auto-healing
-        // auto-seeding
-        // etc.
+        const mergedList = PRODUCTS.map(defaultProd => {
+          if (defaultProd.id === 'brawn-specialty') return null;
+
+          const firestoreProd = prodList.find(
+            p => p.id === defaultProd.id
+          );
+
+          if (firestoreProd) {
+            return {
+              ...defaultProd,
+              price: firestoreProd.price,
+              stock: firestoreProd.stock,
+              discount: firestoreProd.discount,
+              rating: firestoreProd.rating ?? defaultProd.rating,
+              reviews: firestoreProd.reviews ?? defaultProd.reviews
+            };
+          }
+
+          return defaultProd;
+        }).filter(Boolean) as Product[];
+
+        const defaultIds = new Set(PRODUCTS.map(p => p.id));
+
+        prodList.forEach(firestoreProd => {
+          if (
+            firestoreProd.id !== 'brawn-specialty' &&
+            !defaultIds.has(firestoreProd.id)
+          ) {
+            mergedList.push(firestoreProd);
+          }
+        });
+
+        console.log("Products:", mergedList.map(p => p.id));
+
+        setProducts(mergedList);
+        console.log("Merged Products:", mergedList);
+
+        console.log("Millets Combo:",mergedList.find(p => p.id === "millets-combo"));
+
+        setProducts(mergedList);
 
       },
       (error) => {
@@ -307,32 +342,42 @@ export default function App() {
     
 
     // 2. Orders snapshot listener
-    const unsubscribeOrders = onSnapshot(collection(db, 'orders'), (snapshot) => {
-      const orderList: Order[] = [];
-      snapshot.forEach((docSnap) => {
-        orderList.push(docSnap.data() as Order);
-      });
-      
-      // Combine with local offline fallback orders
-      try {
-        const saved = localStorage.getItem('jm_orders_fallback');
-        const offlineOrders: Order[] = saved ? JSON.parse(saved) : [];
-        const syncedIds = new Set(orderList.map(o => o.id));
-        offlineOrders.forEach(o => {
-          if (!syncedIds.has(o.id)) {
-            orderList.push(o);
-          }
-        });
-      } catch (e) {
-        console.error("Failed to parse fallback orders:", e);
-      }
+    const unsubscribeOrders = onSnapshot(
+      collection(db, "orders"),
+      (snapshot) => {
+        const orderList: Order[] = [];
 
-      // Sort orders descending by creation date
-      orderList.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      setOrders(orderList);
-    }, (error) => {
-      logFirestoreError("Firestore loading orders failed", error);
-    });
+        snapshot.forEach((docSnap) => {
+          orderList.push(docSnap.data() as Order);
+        });
+
+        // Combine with local offline fallback orders
+        try {
+          const saved = localStorage.getItem("jm_orders_fallback");
+          const offlineOrders: Order[] = saved ? JSON.parse(saved) : [];
+          const syncedIds = new Set(orderList.map(o => o.id));
+
+          offlineOrders.forEach(o => {
+            if (!syncedIds.has(o.id)) {
+              orderList.push(o);
+            }
+          });
+        } catch (e) {
+          console.error("Failed to parse fallback orders:", e);
+        }
+
+        orderList.sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() -
+            new Date(a.createdAt).getTime()
+        );
+
+        setOrders(orderList);
+      },
+      (error) => {
+        logFirestoreError("Firestore loading orders failed", error);
+      }
+    );
 
     // 3. Coupons snapshot listener
     const unsubscribeCoupons = onSnapshot(collection(db, 'coupons'), (snapshot) => {
@@ -585,7 +630,7 @@ export default function App() {
 
     try {
       // 1. Save new order to Firestore
-      await setDoc(doc(db, 'orders', newOrder.id), newOrder);
+      await setDoc(doc(db, "orders", newOrder.id), newOrder);
 
       // 2. Reduce stock of each item in order in Firestore
       products.forEach(async (prod) => {
@@ -788,6 +833,15 @@ export default function App() {
     const matchSize = selectedSizeFilter === 'All' || p.bagSizes.includes(Number(selectedSizeFilter));
     
     const matchStock = !onlyInStock || p.stock > 0;
+    console.log({
+      name: p.name,
+      category: p.category,
+      selectedCategory,
+      selectedSizeFilter,
+      bagSizes: p.bagSizes,
+      matchCategory,
+      matchSize
+    });
 
     return matchSearch && matchCategory && matchPrice && matchSize && matchStock;
   });
