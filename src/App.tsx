@@ -631,15 +631,40 @@ export default function App() {
 
     try {
       // 1. Save new order to Firestore
-      await setDoc(doc(db, "orders", newOrder.id), newOrder);
+      try {
+        const cleanOrder = JSON.parse(JSON.stringify(newOrder));
+        await setDoc(
+          doc(db, "orders", cleanOrder.id),
+          cleanOrder
+        );
+        console.log(newOrder);
+        console.log("✅ Order saved to Firestore");
+      } catch (e: any) {
+        console.error("Firestore Error:", e);
+        alert(
+          "Error Code: " + e.code + "\n\n" +
+          "Message: " + e.message
+        );
+        return;
+      }
 
       // 2. Reduce stock of each item in order in Firestore
       products.forEach(async (prod) => {
-        const matchingOrderedItems = newOrder.items.filter(it => it.productId === prod.id);
+        const matchingOrderedItems = newOrder.items.filter(
+          it => it.productId === prod.id
+        );
+
         if (matchingOrderedItems.length > 0) {
-          const totalOrderedQtyKg = matchingOrderedItems.reduce((acc, match) => acc + (match.size * match.quantity), 0);
+          const totalOrderedQtyKg = matchingOrderedItems.reduce(
+            (acc, match) => acc + (match.size * match.quantity),
+            0
+          );
+
           const newStock = Math.max(0, prod.stock - totalOrderedQtyKg);
-          await updateDoc(doc(db, 'products', prod.id), { stock: newStock });
+
+          await updateDoc(doc(db, "products", prod.id), {
+            stock: newStock,
+          });
         }
       });
 
@@ -647,13 +672,16 @@ export default function App() {
       try {
         await sendOrderConfirmation(newOrder);
       } catch (emailError) {
-        console.error("Failed to send order confirmation email:", emailError);
+        console.error(emailError);
       }
 
       orderStoredSuccessfully = true;
     } catch (e) {
-      logFirestoreError("Firestore placing order failed, falling back to local storage:", e);
+      console.error("❌ Firestore Error:", e);
+      alert("Firestore Error. Press F12 and check the Console.");
     }
+
+
 
     // Whether Firestore succeeded or failed, let's keep local states updated
     // 1. Update fallback local orders in localStorage so they survive page reloads

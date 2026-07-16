@@ -120,21 +120,24 @@ export default function Checkout({
     const newOrder: Order = {
       id: orderId,
       customerName: name,
-      email: email,
+      email: email || "",
       phone: phone,
       address: address,
-      notes: notes,
+      notes: notes || "",
       items: orderItems,
       subtotal: subtotal,
       discount: couponDiscountValue,
       deliveryCharge: deliveryCharge,
       total: grandTotal,
-      status: 'Pending',
+      status: "Pending",
       paymentMethod: method,
       paymentStatus: payStatus,
-      upiTransactionId: method === 'UPI' ? upiTxId : undefined,
-      upiScreenshot: method === 'UPI' ? upiScreenshotBase64 : undefined,
-      createdAt: new Date().toISOString()
+
+      // Never store undefined values
+      upiTransactionId: method === "UPI" ? (upiTxId || "") : "",
+      upiScreenshot: method === "UPI" ? (upiScreenshotBase64 || "") : "",
+
+      createdAt: new Date().toISOString(),
     };
 
     setPlacedOrder(newOrder);
