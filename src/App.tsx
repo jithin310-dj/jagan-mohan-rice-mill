@@ -30,7 +30,7 @@ import { collection, doc, setDoc, onSnapshot, updateDoc, deleteDoc, writeBatch }
 export default function App() {
   // Navigation State
   const [currentTab, setCurrentTab] = useState<string>('home');
-
+  const [scrollToFilters, setScrollToFilters] = useState(false);
   // Database / Global states with real-time Firestore sync and LocalStorage fallback
   const [products, setProducts] = useState<Product[]>(() => {
     try {
@@ -925,13 +925,38 @@ export default function App() {
         {/* VIEW 1: HOME PAGE */}
         {currentTab === 'home' && (
           <div className="space-y-16 pb-16">
-            <Hero
+            {/* <Hero
               onShopNow={() => setCurrentTab('products')}
               onExploreProducts={() => {
                 setSelectedCategory('All');
                 setCurrentTab('products');
               }}
+            /> */}
+            {/* <Hero
+              onShopNow={() => setCurrentTab('products')}
+              onExploreProducts={() => {
+                setSelectedCategory('All');
+                setCurrentTab('products');
+
+                setTimeout(() => {
+                  document
+                    .getElementById("catalog-filters")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                }, 300);
+              }}
+            /> */}
+            <Hero
+              onShopNow={() => setCurrentTab('products')}
+              onExploreProducts={() => {
+                setSelectedCategory('All');
+                setCurrentTab('products');
+                setScrollToFilters(true);
+              }}
             />
+
 
             {/* Categories Section */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1163,7 +1188,7 @@ export default function App() {
 
         {/* VIEW 2: PRODUCTS CATALOG PAGE */}
         {currentTab === 'products' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div id="catalog-filters" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
             {/* Mobile Filter Toggle Button */}
             <div className="lg:hidden mb-4">

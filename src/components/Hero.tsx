@@ -50,7 +50,7 @@ export default function Hero({ onShopNow, onExploreProducts }: HeroProps) {
                 onClick={onExploreProducts}
                 className="px-8 py-3.5 border border-accent-gold text-accent-gold rounded-full font-bold text-sm hover:bg-accent-gold/5 uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer"
               >
-                <span>Explore Products</span>
+                <span>SHOW CATALOG FILTERS</span>
                 <ChevronRight className="w-4 h-4 text-accent-gold" />
               </button>
             </div>
