@@ -876,7 +876,7 @@ export default function App() {
         setShowAuthModal={setShowAuthModal}
       />
 
-      {firestoreQuotaExceeded && !dismissedOfflineBanner && (
+      {/* {currentUser?.role === "admin" && firestoreQuotaExceeded &&!dismissedOfflineBanner && (
         <div id="offline-fallback-banner" className="bg-amber-50 px-4 py-4.5 border-b border-amber-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm font-medium">
           <div className="flex items-start gap-3 text-amber-900">
             <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -917,7 +917,7 @@ export default function App() {
             <X className="w-5 h-5" />
           </button>
         </div>
-      )}
+      )} */}
 
       {/* Main Screen Views Routing */}
       <main className="flex-grow">
