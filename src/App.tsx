@@ -352,19 +352,19 @@ export default function App() {
         });
 
         // Combine with local offline fallback orders
-        try {
-          const saved = localStorage.getItem("jm_orders_fallback");
-          const offlineOrders: Order[] = saved ? JSON.parse(saved) : [];
-          const syncedIds = new Set(orderList.map(o => o.id));
+        // try {
+        //   const saved = localStorage.getItem("jm_orders_fallback");
+        //   const offlineOrders: Order[] = saved ? JSON.parse(saved) : [];
+        //   const syncedIds = new Set(orderList.map(o => o.id));
 
-          offlineOrders.forEach(o => {
-            if (!syncedIds.has(o.id)) {
-              orderList.push(o);
-            }
-          });
-        } catch (e) {
-          console.error("Failed to parse fallback orders:", e);
-        }
+        //   offlineOrders.forEach(o => {
+        //     if (!syncedIds.has(o.id)) {
+        //       orderList.push(o);
+        //     }
+        //   });
+        // } catch (e) {
+        //   console.error("Failed to parse fallback orders:", e);
+        // }
 
         orderList.sort(
           (a, b) =>

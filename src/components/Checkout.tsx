@@ -150,7 +150,7 @@ export default function Checkout({
     setIsSubmitting(true);
 
     setTimeout(() => {
-      completeOrder('UPI', 'Pending');
+      completeOrder(paymentMethod, "Pending");
     }, 1200);
   };
 
@@ -325,18 +325,54 @@ export default function Checkout({
           <div className="bg-white p-6 rounded-3xl border border-primary-green/5 shadow-xs space-y-5">
             <h3 className="font-serif font-bold text-gray-900 text-base border-b border-gray-100 pb-3 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-primary-green" />
-              <span>UPI Payment (Required)</span>
+              <span>Choose Payment Method</span>
             </h3>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("UPI")}
+                className={`p-4 rounded-2xl border-2 transition-all font-bold ${
+                  paymentMethod === "UPI"
+                    ? "border-primary-green bg-green-50 text-primary-green"
+                    : "border-gray-200"
+                }`}
+              >
+                UPI Payment
+              </button>
 
-            <div className="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-500/10 text-center">
-              <p className="text-[11px] text-emerald-800 leading-relaxed font-serif">
-                <strong>Jagan Mohan Rice Mill</strong> operates on <strong>Direct UPI payments only</strong> for quick billing, instant milling queues, and express local dispatch.
-              </p>
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("COD")}
+                className={`p-4 rounded-2xl border-2 transition-all font-bold ${
+                  paymentMethod === "COD"
+                    ? "border-primary-green bg-green-50 text-primary-green"
+                    : "border-gray-200"
+                }`}
+              >
+                Cash on Delivery
+              </button>
             </div>
 
+            {paymentMethod === "UPI" ? (
+              <div className="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-500/10 text-center">
+                <p className="text-[11px] text-emerald-800 leading-relaxed font-serif">
+                  <strong>Jagan Mohan Rice Mill</strong> operates on <strong>Direct UPI payments</strong> for quick billing, instant milling queues, and express local dispatch.
+                </p>
+              </div>
+            ) : (
+              <div className="bg-yellow-50 p-4 rounded-2xl border border-yellow-300 text-center">
+                <p className="text-[13px] text-yellow-800 leading-relaxed font-serif">
+                  <strong>Cash on Delivery Selected</strong>
+                  <br />
+                  Pay the delivery person when your order is delivered.
+                </p>
+              </div>
+            )}
+
             {/* Paytm Styled QR Card */}
+            {paymentMethod === "UPI" && (
             <div className="flex flex-col items-center justify-center py-4 bg-gray-50/50 rounded-3xl border border-gray-200/60 p-6 space-y-6">
-              
+           
               {/* Interactive UPI App Selector */}
               <div className="w-full space-y-3">
                 <span className="block text-[11px] uppercase tracking-wider font-extrabold text-gray-400 text-center">Select Your UPI App</span>
@@ -490,8 +526,25 @@ export default function Checkout({
                   )}
                   <span className="text-[9px] text-gray-400 mt-1 block text-center">Mandatory for payment confirmation and queue billing.</span>
                 </div>
+              
               </div>
             </div>
+          )}
+          {paymentMethod === "COD" && (
+            <div className="bg-yellow-50 border border-yellow-300 rounded-2xl p-6 text-center">
+              <h3 className="text-lg font-bold text-yellow-800">
+                Cash on Delivery
+              </h3>
+
+              <p className="mt-2 text-gray-700">
+                Pay the delivery person when your order arrives.
+              </p>
+
+              <p className="mt-4 text-xl font-bold text-primary-green">
+                Amount to Pay: ₹{grandTotal}
+              </p>
+            </div>
+          )}
           </div>
 
         </form>
