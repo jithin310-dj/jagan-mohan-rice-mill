@@ -21,7 +21,7 @@ export const PRODUCTS: Product[] = [
     stock: 1500,
     category: 'Jagan Mohan Rice',
     image: '/rose.png?v=4',
-    bagSizes: [ 5, 10, 26, 50],
+    bagSizes: [ 5, 10, 26, 52],
     nutrition: {
       calories: '356 kcal',
       protein: '7.1g',
@@ -44,7 +44,7 @@ export const PRODUCTS: Product[] = [
     stock: 1200,
     category: 'Jagan Mohan Rice',
     image: '/lily.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '352 kcal',
       protein: '6.8g',
@@ -66,7 +66,7 @@ export const PRODUCTS: Product[] = [
     stock: 950,
     category: 'Jagan Mohan Rice',
     image: '/lotus.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '360 kcal',
       protein: '7.3g',
@@ -88,7 +88,7 @@ export const PRODUCTS: Product[] = [
     stock: 800,
     category: 'Jagan Mohan Rice',
     image: '/jasmine.png?v=4',
-    bagSizes: [5, 10, 26],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '354 kcal',
       protein: '7.0g',
@@ -108,7 +108,7 @@ export const PRODUCTS: Product[] = [
     stock: 1400,
     category: 'Jagan Mohan Rice',
     image: '/sunflower.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '350 kcal',
       protein: '6.5g',
@@ -130,7 +130,7 @@ export const PRODUCTS: Product[] = [
     stock: 1800,
     category: 'BPT & BPT Silk Rice',
     image: '/Bullet.jpeg?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '355 kcal',
       protein: '7.0g',
@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
     stock: 3500,
     category: 'BPT & BPT Silk Rice',
     image: '/aahar.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '350 kcal',
       protein: '6.4g',
@@ -172,7 +172,7 @@ export const PRODUCTS: Product[] = [
     stock: 1200,
     category: 'BPT & BPT Silk Rice',
     image: '/kisan.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '352 kcal',
       protein: '6.8g',
@@ -192,7 +192,7 @@ export const PRODUCTS: Product[] = [
     stock: 400,
     category: 'BPT & BPT Silk Rice',
     image: '/popcorn.png?v=4',
-    bagSizes: [ 5, 10, 26, 50],
+    bagSizes: [ 5, 10, 26, 52],
     nutrition: {
       calories: '358 kcal',
       protein: '7.1g',
@@ -212,7 +212,7 @@ export const PRODUCTS: Product[] = [
     stock: 1100,
     category: 'BPT & BPT Silk Rice',
     image: '/classic.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '354 kcal',
       protein: '6.9g',
@@ -234,7 +234,7 @@ export const PRODUCTS: Product[] = [
     stock: 750,
     category: 'Health & Diet Rice',
     image: '/bell.png?v=4',
-    bagSizes: [5, 10, 26, 50],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '348 kcal',
       protein: '7.9g',
@@ -256,7 +256,7 @@ export const PRODUCTS: Product[] = [
     stock: 850,
     category: 'Health & Diet Rice',
     image: '/bell.png?v=4',
-    bagSizes: [5, 10, 26],
+    bagSizes: [5, 10, 26, 52],
     nutrition: {
       calories: '352 kcal',
       protein: '7.4g',
