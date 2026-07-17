@@ -70,10 +70,10 @@
     "/orders/{orderId}": {
       "schema": "Order",
       "description": "Customer purchase orders and proof receipts"
-    },
-    "/coupons/{couponId}": {
-      "schema": "Coupon",
-      "description": "Discount codes allowlisted for checkouts"
     }
+    // "/coupons/{couponId}": {
+    //   "schema": "Coupon",
+    //   "description": "Discount codes allowlisted for checkouts"
+    // }
   }
 }
