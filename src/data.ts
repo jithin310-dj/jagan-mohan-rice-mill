@@ -1,4 +1,4 @@
-import { Product, Coupon } from './types';
+import { Product } from './types';
 
 export const CATEGORIES = [
   'Jagan Mohan Rice',
