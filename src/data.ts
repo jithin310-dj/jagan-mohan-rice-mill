@@ -660,11 +660,11 @@ export const PRODUCTS: Product[] = [
 ];
   
 
-export const COUPONS: Coupon[] = [
-  { code: 'JAGANMOHAN10', type: 'percentage', value: 10, minOrderValue: 1000 },
-  { code: 'RICEGOLD500', type: 'fixed', value: 500, minOrderValue: 5000 },
-  { code: 'FREEDELIVERY', type: 'percentage', value: 0, minOrderValue: 2000 }
-];
+// export const COUPONS: Coupon[] = [
+//   { code: 'JAGANMOHAN10', type: 'percentage', value: 10, minOrderValue: 1000 },
+//   { code: 'RICEGOLD500', type: 'fixed', value: 500, minOrderValue: 5000 },
+//   { code: 'FREEDELIVERY', type: 'percentage', value: 0, minOrderValue: 2000 }
+// // ];
 
 export const CONTACT_INFO = {
   name: 'Jagan Mohan Rice Mill',
