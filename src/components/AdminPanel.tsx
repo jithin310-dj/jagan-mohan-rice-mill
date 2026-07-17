@@ -1046,7 +1046,7 @@ export default function AdminPanel({
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {coupons.map((c) => (
-                <div key={c.code} className="border border-dashed border-primary-green/20 rounded-2xl p-4 bg-bg-cream/10 space-y-2 relative overflow-hidden flex flex-col justify-between">
+                <div key={c.code} className="border border-dashed border-primary-green/20 rounded-2xl p-5 bg-bg-cream/10 relative overflow-hidden flex flex-col min-h-[180px]">
                   {/* Decorative notch */}
                   <div className="absolute top-1/2 -left-2 w-4 h-4 bg-white rounded-full border-r border-gray-150 transform -translate-y-1/2"></div>
                   <div className="absolute top-1/2 -right-2 w-4 h-4 bg-white rounded-full border-l border-gray-150 transform -translate-y-1/2"></div>
@@ -1061,22 +1061,16 @@ export default function AdminPanel({
                     <p className="text-[10px] text-gray-400 font-semibold">Min basket order value: ₹{c.minOrderValue}</p>
                   </div>
 
-                  <div className="flex justify-between items-center pt-2 border-t border-gray-50">
+                  {/* {/* <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     <span className="text-[9px] text-emerald-700 font-bold uppercase tracking-wider flex items-center gap-1">
                       ● Active coupon
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (confirm(`Purge coupon ${c.code}?`)) {
-                          onDeleteCoupon(c.code);
-                        }
-                      }}
-                      className="text-red-500 hover:text-red-700 text-[10px] font-bold cursor-pointer"
-                    >
-                      Delete Coupon
-                    </button>
-                  </div>
+                    <span className="text-xs text-emerald-700 font-semibold flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      Active Coupon
+                    </span> */}
+                                        
+                  {/* </div> */} 
                 </div>
               ))}
             </div>

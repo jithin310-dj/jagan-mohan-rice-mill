@@ -292,7 +292,7 @@ export default function Cart({
             <h3 className="font-serif font-bold text-gray-900 text-base border-b border-gray-100 pb-3">Order Cost Breakdown</h3>
             
             {/* Coupon Code Input */}
-            <div>
+            {/* <div>
               <form onSubmit={handleApplyCoupon} className="flex gap-2">
                 <div className="relative flex-grow">
                   <input
@@ -331,7 +331,7 @@ export default function Cart({
                   ⚡ Try code <strong className="text-gray-600">JAGANMOHAN10</strong> (10% off for orders ₹1000+)
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Calculations */}
             <div className="space-y-3.5 text-xs text-gray-600 border-t border-b border-gray-100 py-4">
@@ -343,12 +343,12 @@ export default function Cart({
                 <span>Total Accumulated Weight</span>
                 <span className="font-bold text-gray-900">{totalWeight.toFixed(1)} kg</span>
               </div>
-              {appliedCoupon && (
+              {/* {appliedCoupon && (
                 <div className="flex justify-between text-emerald-750 font-semibold bg-emerald-50 p-2.5 rounded-2xl">
                   <span>Coupon ({appliedCoupon.code})</span>
                   <span>- ₹{couponDiscountValue}</span>
                 </div>
-              )}
+              )} */}
               <div className="flex justify-between">
                 <span className="flex items-center gap-1">
                   Delivery Fee 
